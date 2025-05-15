@@ -1,0 +1,7 @@
+version: '3.8'
+services:
+  reddit-to-tiktok:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: no
