@@ -27,5 +27,6 @@ COPY src .
 COPY assets/fonts assets/fonts
 
 RUN pip3 install --no-cache-dir -r requirements.txt
+RUN chmod +x entrypoint.sh
 
 ENTRYPOINT ["./entrypoint.sh"]
