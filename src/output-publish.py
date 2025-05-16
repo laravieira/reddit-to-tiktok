@@ -3,6 +3,10 @@ import os
 import json
 
 if __name__ == '__main__':
+    if os.getenv('TIKTOK_PUBLISH_ENABLE', 'false').lower() != 'true':
+        print('Publishing to TikTok is disabled. Set TIKTOK_PUBLISH_ENABLE to true to enable.')
+        exit(0)
+
     post_title = ''
 
     with open('assets/inputs/post.json', 'r', encoding='utf-8') as file:
