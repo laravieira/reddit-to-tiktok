@@ -13,6 +13,9 @@ python3 video-generator.py
 echo "Uploading output files..."
 python3 output-upload.py
 
+echo "Publishing video on TikTok..."
+python3 output-publish.py
+
 echo "Cleaning up..."
 rm -rf assets/inputs assets/output
 
