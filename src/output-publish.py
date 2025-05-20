@@ -17,8 +17,8 @@ def uploadVideo(session_id, video, title, tags, users=[], url_prefix='us', sched
     tiktok_max_margin_schedule_time = 864000  # 10 days
     margin_to_upload_video = 300  # 5 minutes
 
-    min_schedule_time = datetime.datetime.now(datetime.UTC) + tiktok_min_margin_schedule_time + margin_to_upload_video
-    max_schedule_time = datetime.datetime.now(datetime.UTC) + tiktok_max_margin_schedule_time
+    min_schedule_time = datetime.datetime.now(datetime.UTC).timestamp() + tiktok_min_margin_schedule_time + margin_to_upload_video
+    max_schedule_time = datetime.datetime.now(datetime.UTC).timestamp() + tiktok_max_margin_schedule_time
 
     if schedule_time == 0:
         pass
