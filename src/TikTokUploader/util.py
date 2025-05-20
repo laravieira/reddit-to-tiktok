@@ -210,7 +210,7 @@ def uploadToTikTok(video, session):
         return False
     url = 'https://vod-ap-singapore-1.bytevcloudapi.com/'
     request_parameters = f'Action=CommitUploadInner&SpaceName=tiktok&Version=2020-11-19'
-    t = datetime.datetime.now(datetime.UTC).timestamp()
+    t = datetime.datetime.now(datetime.UTC)
     amzdate = t.strftime('%Y%m%dT%H%M%SZ')
     datestamp = t.strftime('%Y%m%d')
     data = '{"SessionKey":"'+session_key+'","Functions":[]}'
