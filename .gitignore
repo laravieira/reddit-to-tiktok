@@ -176,3 +176,5 @@ cython_debug/
 /.idea
 /assets/inputs
 /assets/output
+/assets/backgrounds
+.ipynb

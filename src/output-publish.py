@@ -9,16 +9,16 @@ from TikTokUploader.x_bogus_ import get_x_bogus
 from TikTokUploader.util import assertSuccess, printError, getTagsExtra, uploadToTikTok, log, getCreationId
 
 
-UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36'
+UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0'
 
-def uploadVideo(session_id, video, title, tags, users=[], url_prefix="us", schedule_time: int = 0, proxy: dict = None):
+def uploadVideo(session_id, video, title, tags, users=[], url_prefix='us', schedule_time: int = 0, proxy: dict = None):
     # In the TikTok web version, the schedule must be as least 15 minutes in the future, and a maximum of 10 days, also the minutes in schedule_time must be multiple of 5
     tiktok_min_margin_schedule_time =  900  # 15 minutes
     tiktok_max_margin_schedule_time = 864000  # 10 days
     margin_to_upload_video = 300  # 5 minutes
 
-    min_schedule_time = datetime.datetime.utcnow().timestamp() + tiktok_min_margin_schedule_time + margin_to_upload_video
-    max_schedule_time = datetime.datetime.utcnow().timestamp() + tiktok_max_margin_schedule_time
+    min_schedule_time = datetime.datetime.now(datetime.UTC) + tiktok_min_margin_schedule_time + margin_to_upload_video
+    max_schedule_time = datetime.datetime.now(datetime.UTC) + tiktok_max_margin_schedule_time
 
     if schedule_time == 0:
         pass
@@ -33,7 +33,7 @@ def uploadVideo(session_id, video, title, tags, users=[], url_prefix="us", sched
 
     if proxy:
         session.proxies.update(proxy)
-    session.cookies.set("sessionid", session_id, domain=".tiktok.com")
+    session.cookies.set('sessionid', session_id, domain='.tiktok.com')
     session.verify = True
     headers = {
         'User-Agent': UA
@@ -45,8 +45,8 @@ def uploadVideo(session_id, video, title, tags, users=[], url_prefix="us", sched
     creationid = getCreationId()
     url = f"https://{url_prefix}.tiktok.com/api/v1/web/project/create/?creation_id={creationid}&type=1&aid=1988"
     headers = {
-        "X-Secsdk-Csrf-Request": "1",
-        "X-Secsdk-Csrf-Version": "1.2.8"
+        'X-Secsdk-Csrf-Request': '1',
+        'X-Secsdk-Csrf-Version': '1.2.8'
     }
     r = session.post(url, headers=headers)
     if not assertSuccess(url, r):
@@ -57,25 +57,26 @@ def uploadVideo(session_id, video, title, tags, users=[], url_prefix="us", sched
         print(f"[-] An error occured while reaching {url}")
         print("[-] Please try to change the --url_server argument to the adapted prefix for your account")
         return False
-    creationID = tempInfo["creationID"]
-    projectID = tempInfo["project_id"]
+    creationID = tempInfo['creationID']
+    projectID = tempInfo['project_id']
     # 获取账号信息
     url = f"https://{url_prefix}.tiktok.com/passport/web/account/info/"
     r = session.get(url)
     if not assertSuccess(url, r):
         return False
     # user_id = r.json()["data"]["user_id_str"]
-    log("Start uploading video")
+    log('Start uploading video')
     video_id = uploadToTikTok(video, session)
     if not video_id:
-        log("Video upload failed")
+        log('Video upload failed')
         return False
-    log("Video uploaded successfully")
+    log('Video uploaded successfully')
     time.sleep(2)
     result = getTagsExtra(title, tags, users, session, url_prefix)
     time.sleep(3)
     title = result[0]
     text_extra = result[1]
+    markup_text = result[2]
     postQuery = {
         'app_name': 'tiktok_web',
         'channel': 'tiktok_web',
@@ -116,7 +117,7 @@ def uploadVideo(session_id, video, title, tags, users=[], url_prefix="us", sched
                 "single_post_feature_info": {
                     "text": title,
                     "text_extra": text_extra,
-                    "markup_text": title,
+                    "markup_text": markup_text,
                     "music_info": {},
                     "poster_delay": 0,
                 }
