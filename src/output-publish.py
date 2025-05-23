@@ -103,8 +103,8 @@ def uploadVideo(session_id, video, title, tags, users=[], url_prefix='us', sched
                 },
                 "privacy_setting_info": {
                     "visibility_type": 0,
-                    "allow_duet": 1,
-                    "allow_stitch": 1,
+                    "allow_duet": 0,
+                    "allow_stitch": 0,
                     "allow_comment": 1
                 }
             }
