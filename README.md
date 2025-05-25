@@ -6,7 +6,7 @@
 This project is a Python rendering and publishing pipeline that takes Reddit posts data and converts them into TikTok videos. The pipeline includes downloading assets from a MinIO server, generating a thumbnail, creating a video with audio and subtitles, and finally uploading the video to TikTok.
 #### Thumbnail
 The thumbnail is generated using the subreddit community icon and the post data. It has the fix width and the height is calculated based on the title length.
-![thumbnail.png](assets/output/thumbnail.png)
+![thumbnail.png](assets/readme/thumbnail.png)
 #### Video
 The video is generated using the background video, TTS audio of the post title and content, and subtitles. The video has a fixed width and the height is calculated based on the background video aspect ratio (its optimized for TikTok, 1080x1920).
 [![Watch the video](https://img.youtube.com/vi/N_YoukvxIaE/hqdefault.jpg)](https://www.youtube.com/embed/N_YoukvxIaE)
@@ -88,3 +88,6 @@ python3 src/output-upload.py
 ```bash
 python3 src/output-publish.py
 ```
+
+## Credits
+Credits to [546200350](https://github.com/546200350) for the [TikTokUploader](https://github.com/546200350/TikTokUploder) project.
