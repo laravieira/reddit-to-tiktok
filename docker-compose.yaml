@@ -4,4 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    logging:
+      driver: json-file
+      options:
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
     restart: no
