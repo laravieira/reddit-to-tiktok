@@ -1,4 +1,3 @@
-import os
 import requests
 import json
 import time
@@ -7,6 +6,10 @@ from urllib.parse import urlencode
 
 from TikTokUploader.x_bogus_ import get_x_bogus
 from TikTokUploader.util import assertSuccess, printError, getTagsExtra, uploadToTikTok, log, getCreationId
+
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 
 UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0'

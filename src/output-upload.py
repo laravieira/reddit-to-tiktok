@@ -1,5 +1,8 @@
 from minio import Minio
+
+from dotenv import load_dotenv
 import os
+load_dotenv()
 
 files = [
     (os.getenv('OBJECT_NAME_THUMBNAIL', 'thumbnail.png'), 'assets/output/thumbnail.png'),

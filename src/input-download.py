@@ -1,5 +1,8 @@
 from minio import Minio
+
+from dotenv import load_dotenv
 import os
+load_dotenv()
 
 files = [
     (os.getenv('OBJECT_NAME_BACKGROUND_VIDEO',  'background.mp4'), 'assets/inputs/background.mp4'),

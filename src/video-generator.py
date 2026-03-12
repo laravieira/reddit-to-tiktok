@@ -1,7 +1,10 @@
 from moviepy import VideoFileClip, TextClip, CompositeVideoClip, AudioFileClip, ImageClip
 from moviepy.video.fx import FadeOut, Resize, CrossFadeIn
 import pysrt
+
+from dotenv import load_dotenv
 import os
+load_dotenv()
 
 audioTitle = AudioFileClip('assets/inputs/title.wav')
 audioContent = AudioFileClip('assets/inputs/content.wav')

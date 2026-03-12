@@ -29,7 +29,8 @@ ENV TIKTOK_URL_PREFIX 'www'
 
 WORKDIR /app
 COPY requirements.txt requirements.txt
-COPY src .
+COPY entrypoint.sh entrypoint.sh
+COPY src src
 COPY assets/fonts assets/fonts
 
 RUN pip3 install --no-cache-dir -r requirements.txt
